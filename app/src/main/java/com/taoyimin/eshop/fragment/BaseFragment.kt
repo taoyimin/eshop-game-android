@@ -7,19 +7,36 @@ import android.view.View
 import android.view.ViewGroup
 
 /**
- * Created by Tao Yimin on 2016/9/12.
- * 所有Fragment的基类
+ * Created by Tao Yimin on 2019/5/10.
+ * 所有Fragment的基类，通过懒加载实现数据的加载
  */
 abstract class BaseFragment : Fragment() {
+    //视图是否加载完毕
+    private var isViewPrepare = false
+    //是否加载过数据
+    private var hasLoadData = false
+
+    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+        super.setUserVisibleHint(isVisibleToUser)
+        lazyLoadData()
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(setContentViewId(), container, false)
-        //初始化事件
-        initEvent()
-        //初始化界面
-        initInterface()
-        //加载数据
-        loadData()
-        return view
+        return inflater.inflate(setContentViewId(), container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        isViewPrepare = true
+        initView()
+        lazyLoadData()
+    }
+
+    private fun lazyLoadData(){
+        if (userVisibleHint && isViewPrepare && !hasLoadData) {
+            loadData()
+            hasLoadData = true
+        }
     }
 
     /**
@@ -30,17 +47,14 @@ abstract class BaseFragment : Fragment() {
     protected abstract fun setContentViewId(): Int
 
     /**
-     * 初始化事件
+     * 初始化控件
      */
-    protected abstract fun initEvent()
+    protected abstract fun initView()
 
-    /**
-     * 初始化界面
-     */
-    protected abstract fun initInterface()
 
     /**
      * 加载数据
      */
     protected abstract fun loadData()
+
 }
