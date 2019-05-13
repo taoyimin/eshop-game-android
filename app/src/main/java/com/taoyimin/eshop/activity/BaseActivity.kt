@@ -24,8 +24,6 @@ abstract class BaseActivity : AppCompatActivity() {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         application!!.addActivity(this)
         setContentView(setContentViewId())
-        //初始化控件
-        findViewsById()
         //初始化事件
         initEvent()
         //初始化界面
@@ -40,11 +38,6 @@ abstract class BaseActivity : AppCompatActivity() {
      * @return
      */
     protected abstract fun setContentViewId(): Int
-
-    /**
-     * 初始化控件
-     */
-    protected abstract fun findViewsById()
 
     /**
      * 初始化事件

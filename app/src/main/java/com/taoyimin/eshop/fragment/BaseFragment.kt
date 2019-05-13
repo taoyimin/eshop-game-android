@@ -13,8 +13,6 @@ import android.view.ViewGroup
 abstract class BaseFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(setContentViewId(), container, false)
-        //初始化控件
-        findViewsById(view)
         //初始化事件
         initEvent()
         //初始化界面
@@ -30,11 +28,6 @@ abstract class BaseFragment : Fragment() {
      * @return
      */
     protected abstract fun setContentViewId(): Int
-
-    /**
-     * 初始化控件
-     */
-    protected abstract fun findViewsById(view: View)
 
     /**
      * 初始化事件
