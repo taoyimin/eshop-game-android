@@ -17,8 +17,8 @@ class GameAdapter(
         private val games: ArrayList<Game>)
     : RecyclerView.Adapter<GameAdapter.GameViewHolder>() {
 
-    private var onItemClickListener : OnItemClickListener? = null
-    private var onItemLongClickListener : OnItemLongClickListener? = null
+    private var onItemClickListener : OnItemClickListener<Game>? = null
+    private var onItemLongClickListener : OnItemLongClickListener<Game>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
             GameViewHolder(LayoutInflater.from(parent.context)
@@ -31,7 +31,7 @@ class GameAdapter(
             games[position].run {
                 holder.titleText.text = title
             }
-            setOnClickListener{onItemClickListener?.onItemClick(games[position])}
+            setOnClickListener{onItemClickListener?.onItemClick(games[position], position)}
             setOnLongClickListener{onItemLongClickListener!!.onItemLongClick(games[position], position)}
         }
     }
@@ -40,11 +40,11 @@ class GameAdapter(
         val titleText: TextView = itemView.findViewById(R.id.text_title)
     }
 
-    fun setOnItemClickListener(onItemClickListener: OnItemClickListener){
+    fun setOnItemClickListener(onItemClickListener: OnItemClickListener<Game>){
         this.onItemClickListener = onItemClickListener
     }
 
-    fun setOnItemLongClickListener(onItemLongClickListener: OnItemLongClickListener){
+    /*fun setOnItemLongClickListener(onItemLongClickListener: OnItemLongClickListener<Game>){
         this.onItemLongClickListener = onItemLongClickListener
-    }
+    }*/
 }

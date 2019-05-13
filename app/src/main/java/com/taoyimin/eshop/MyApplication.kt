@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import kotlin.properties.Delegates
 
 /**
  * Created by Tao Yimin on 2018/1/19.
@@ -14,7 +15,7 @@ class MyApplication : Application() {
     private val activities: MutableList<Activity> = arrayListOf()
 
     //获取SharedPreferences
-    val appPreferences: SharedPreferences
+    private val appPreferences: SharedPreferences
         get() = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
 
     override fun onCreate() {
@@ -23,7 +24,7 @@ class MyApplication : Application() {
         //x.Ext.init(this);
         //x.Ext.setDebug(BuildConfig.DEBUG);
         //初始化上下文对象
-        context = applicationContext as MyApplication
+        context = applicationContext
     }
 
     //SharedPreferences存储String类型
@@ -71,9 +72,9 @@ class MyApplication : Application() {
     }
 
     companion object {
-        private val PREF_NAME = "eshop-game"
+        private const val PREF_NAME = "eshop-game"
         //获取应用程序上下文对象
-        var context: MyApplication? = null
+        var context: Context by Delegates.notNull()
             private set
     }
 }
