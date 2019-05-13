@@ -3,7 +3,6 @@ package com.taoyimin.eshop.activity
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-
 import com.taoyimin.eshop.MyApplication
 
 
@@ -12,22 +11,20 @@ import com.taoyimin.eshop.MyApplication
  * 所有Activity的基类
  */
 abstract class BaseActivity : AppCompatActivity() {
-    private var application: MyApplication? = null
+    private var application = MyApplication.context as MyApplication
+
+    companion object{
+        private val TAG = this::class.java.name
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (application == null) {
-            // 得到Application对象
-            application = getApplication() as MyApplication
-        }
         //设置应用为竖屏显示，不跟随系统旋转
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-        application!!.addActivity(this)
+        application.addActivity(this)
         setContentView(setContentViewId())
-        //初始化事件
-        initEvent()
-        //初始化界面
-        initInterface()
+        //初始化控件
+        initView()
         //加载数据
         loadData()
     }
@@ -40,14 +37,9 @@ abstract class BaseActivity : AppCompatActivity() {
     protected abstract fun setContentViewId(): Int
 
     /**
-     * 初始化事件
+     * 初始化控件
      */
-    protected abstract fun initEvent()
-
-    /**
-     * 初始化界面
-     */
-    protected abstract fun initInterface()
+    protected abstract fun initView()
 
     /**
      * 加载数据
@@ -56,6 +48,6 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        application!!.removeActivity(this)
+        application.removeActivity(this)
     }
 }

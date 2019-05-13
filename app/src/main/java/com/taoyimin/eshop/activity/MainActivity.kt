@@ -1,43 +1,25 @@
 package com.taoyimin.eshop.activity
 
-import android.support.design.widget.AppBarLayout
-import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
-import android.support.v4.view.ViewPager
-import android.support.v7.widget.Toolbar
 import com.taoyimin.eshop.R
 import com.taoyimin.eshop.adapter.MainViewPagerAdapter
 import com.taoyimin.eshop.fragment.GameListFragment
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
-    private var appbarLayout: AppBarLayout? = null
-    private var toolBar: Toolbar? = null
-    private var tabLayout: TabLayout? = null
-    private var viewPager: ViewPager? = null
     private var fragmentList = ArrayList<Fragment>()
-    private var titleArray = arrayOf("标题1","标题2","标题3","标题4")
+    private val titleArray by lazy { this.resources.getStringArray(R.array.view_pager_tab) }
 
     override fun setContentViewId(): Int {
         return R.layout.activity_main
     }
 
-    override fun findViewsById() {
-        appbarLayout = findViewById(R.id.appbar_layout)
-        toolBar = findViewById(R.id.toolbar)
-        tabLayout = findViewById(R.id.tab_layout)
-        viewPager = findViewById(R.id.view_pager)
-    }
-
-    override fun initEvent() {
+    override fun initView() {
         for (title in titleArray){
             fragmentList.add(GameListFragment.getInstance(title))
         }
-        viewPager!!.adapter = MainViewPagerAdapter(supportFragmentManager, fragmentList, titleArray)
-        tabLayout!!.setupWithViewPager(viewPager)
-    }
-
-    override fun initInterface() {
-
+        view_pager.adapter = MainViewPagerAdapter(supportFragmentManager, fragmentList, titleArray)
+        tab_layout.setupWithViewPager(view_pager)
     }
 
     override fun loadData() {
