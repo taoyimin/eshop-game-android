@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">EshopGame</string>
+
+    <array name="view_pager_tab">
+        <item>标题1</item>
+        <item>标题2</item>
+        <item>标题3</item>
+        <item>标题4</item>
+    </array>
 </resources>
