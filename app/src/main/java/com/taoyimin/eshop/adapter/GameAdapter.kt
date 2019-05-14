@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.taoyimin.eshop.R
 import com.taoyimin.eshop.bean.Game
 import com.taoyimin.eshop.i.OnItemClickListener
@@ -14,7 +15,7 @@ import com.taoyimin.eshop.i.OnItemLongClickListener
  */
 class GameAdapter(
         private val games: ArrayList<Game>)
-    : androidx.recyclerview.widget.RecyclerView.Adapter<GameAdapter.GameViewHolder>() {
+    : RecyclerView.Adapter<GameAdapter.GameViewHolder>() {
 
     private var onItemClickListener : OnItemClickListener<Game>? = null
     private var onItemLongClickListener : OnItemLongClickListener<Game>? = null
@@ -35,7 +36,7 @@ class GameAdapter(
         }
     }
 
-    inner class GameViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
+    inner class GameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleText: TextView = itemView.findViewById(R.id.text_title)
     }
 
