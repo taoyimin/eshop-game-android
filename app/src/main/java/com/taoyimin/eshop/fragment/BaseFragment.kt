@@ -1,7 +1,6 @@
 package com.taoyimin.eshop.fragment
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,7 @@ import android.view.ViewGroup
  * Created by Tao Yimin on 2019/5/10.
  * 所有Fragment的基类，通过懒加载实现数据的加载
  */
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment : androidx.fragment.app.Fragment() {
     //视图是否加载完毕
     private var isViewPrepare = false
     //是否加载过数据

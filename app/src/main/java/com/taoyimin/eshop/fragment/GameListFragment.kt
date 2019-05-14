@@ -3,11 +3,11 @@ package com.taoyimin.eshop.fragment
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.taoyimin.eshop.R
 import com.taoyimin.eshop.adapter.GameAdapter
 import com.taoyimin.eshop.bean.Game

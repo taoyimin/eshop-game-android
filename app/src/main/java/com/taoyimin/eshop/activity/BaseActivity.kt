@@ -2,7 +2,7 @@ package com.taoyimin.eshop.activity
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.taoyimin.eshop.MyApplication
 
 
@@ -12,10 +12,6 @@ import com.taoyimin.eshop.MyApplication
  */
 abstract class BaseActivity : AppCompatActivity() {
     private var application = MyApplication.context as MyApplication
-
-    companion object{
-        private val TAG = this::class.java.name
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

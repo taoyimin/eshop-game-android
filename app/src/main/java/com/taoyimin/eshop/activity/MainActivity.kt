@@ -1,6 +1,6 @@
 package com.taoyimin.eshop.activity
 
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import com.taoyimin.eshop.R
 import com.taoyimin.eshop.adapter.MainViewPagerAdapter
 import com.taoyimin.eshop.fragment.GameListFragment
