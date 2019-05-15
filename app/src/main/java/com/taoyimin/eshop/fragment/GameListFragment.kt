@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_game_list.*
  */
 class GameListFragment : BaseFragment() {
     private val gameList = ArrayList<Game>()
-    private var adapter = GameAdapter(gameList)
+    //private val adapter by lazy { activity?.let { GameAdapter(it, gameList) } }
 
     companion object {
         private val TAG = this::class.java.name
@@ -38,9 +38,9 @@ class GameListFragment : BaseFragment() {
     }
 
     override fun initView() {
-        recycler_view.layoutManager = LinearLayoutManager(context)
-        recycler_view.adapter = adapter
-        adapter.setOnItemClickListener(object : OnItemClickListener<Game> {
+        recycler_view.layoutManager = LinearLayoutManager(activity)
+        recycler_view.adapter = GameAdapter(gameList)
+        (recycler_view.adapter as GameAdapter).setOnItemClickListener(object : OnItemClickListener<Game> {
             override fun onItemClick(obj: Game, position: Int) {
 
             }
@@ -58,71 +58,71 @@ class GameListFragment : BaseFragment() {
             val game = Game("标题$i")
             gameList.add(game)
         }
-        adapter.notifyDataSetChanged()
+        (recycler_view.adapter as GameAdapter).notifyDataSetChanged()
     }
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-        Log.i(TAG, arguments?.getString("title")+"***setUserVisibleHint***isVisibleToUser="+isVisibleToUser)
+        Log.i(TAG, arguments?.getString("title") + "***setUserVisibleHint***isVisibleToUser=" + isVisibleToUser)
         super.setUserVisibleHint(isVisibleToUser)
     }
 
     override fun onAttach(context: Context?) {
-        Log.i(TAG, arguments?.getString("title")+"***onAttach")
+        Log.i(TAG, arguments?.getString("title") + "***onAttach")
         super.onAttach(context)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.i(TAG, arguments?.getString("title")+"***onCreate")
+        Log.i(TAG, arguments?.getString("title") + "***onCreate")
         super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        Log.i(TAG, arguments?.getString("title")+"***onCreateView")
+        Log.i(TAG, arguments?.getString("title") + "***onCreateView")
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        Log.i(TAG, arguments?.getString("title")+"***onViewCreated")
+        Log.i(TAG, arguments?.getString("title") + "***onViewCreated")
         super.onViewCreated(view, savedInstanceState)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-        Log.i(TAG, arguments?.getString("title")+"***onActivityCreated")
+        Log.i(TAG, arguments?.getString("title") + "***onActivityCreated")
         super.onActivityCreated(savedInstanceState)
     }
 
     override fun onStart() {
-        Log.i(TAG, arguments?.getString("title")+"***onStart")
+        Log.i(TAG, arguments?.getString("title") + "***onStart")
         super.onStart()
     }
 
     override fun onResume() {
-        Log.i(TAG, arguments?.getString("title")+"***onResume")
+        Log.i(TAG, arguments?.getString("title") + "***onResume")
         super.onResume()
     }
 
     override fun onPause() {
-        Log.i(TAG, arguments?.getString("title")+"***onPause")
+        Log.i(TAG, arguments?.getString("title") + "***onPause")
         super.onPause()
     }
 
     override fun onStop() {
-        Log.i(TAG, arguments?.getString("title")+"***onStop")
+        Log.i(TAG, arguments?.getString("title") + "***onStop")
         super.onStop()
     }
 
     override fun onDestroyView() {
-        Log.i(TAG, arguments?.getString("title")+"***onDestroyView")
+        Log.i(TAG, arguments?.getString("title") + "***onDestroyView")
         super.onDestroyView()
     }
 
     override fun onDestroy() {
-        Log.i(TAG, arguments?.getString("title")+"***onDestroy")
+        Log.i(TAG, arguments?.getString("title") + "***onDestroy")
         super.onDestroy()
     }
 
     override fun onDetach() {
-        Log.i(TAG, arguments?.getString("title")+"***onDetach")
+        Log.i(TAG, arguments?.getString("title") + "***onDetach")
         super.onDetach()
     }
 }
